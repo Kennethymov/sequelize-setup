@@ -303,7 +303,6 @@
 
   RUN npx tsc
 
-  CMD ["npm", "start"]
   ~~~
 
   3. Crie o arquivo `docker-compose.yml`
@@ -328,8 +327,12 @@
         depends_on:
           db:
             condition: service_healthy
-        env_file:
-          - .env
+        environment:
+          - APP_PORT=3001
+          - DB_USER=root
+          - DB_PASS=root
+          - DB_HOST=db
+          - DB_PORT=3306
         healthcheck:
           test: ["CMD", "lsof", "-t", "-i:3001"]
           timeout: 10s
