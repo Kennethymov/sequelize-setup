@@ -291,7 +291,7 @@
   ~~~Dockerfile
   FROM node:16.14-alpine
 
-  WORKDIR /app-backend
+  WORKDIR /app-backend-default
 
   COPY package* ./
 
@@ -318,12 +318,12 @@
     version: '3.9'
     services:
       backend:
-        container_name: app_default
+        container_name: app_backend_default
         build: ./
         ports:
           - 3001:3001
         platform: linux/x86_64
-        working_dir: /app-default
+        working_dir: /app-backend-default
         command: npm start
         depends_on:
           db:
@@ -335,7 +335,7 @@
           timeout: 10s
           retries: 5
         volumes:
-          - ./:/app-default
+          - ./:/app-backend-default
       db:
         image: mysql:8.0.21
         container_name: db
