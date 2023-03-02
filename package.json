@@ -1,0 +1,42 @@
+{
+  "name": "sequelize-setup",
+  "version": "1.0.0",
+  "description": "<details>   <summary><h3><strong>1. Setup</strong></h3></summary><br />   <details>   <summary><h4><strong>1.1 Criando o projeto</strong></h4></summary><br />",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "npm run build && node ./dist/index.js",
+    "dev": "tsnd ./src/index.ts",
+    "build": "tsc",
+    "db:reset": "npx -y tsc && npx sequelize-cli db:drop && npx sequelize-cli db:create"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Kennethymov/sequelize-setup.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Kennethymov/sequelize-setup/issues"
+  },
+  "homepage": "https://github.com/Kennethymov/sequelize-setup#readme",
+  "dependencies": {
+    "@types/restify-errors": "^4.3.5",
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "express-async-errors": "^3.1.1",
+    "http-status-codes": "^2.2.0",
+    "restify-errors": "^8.0.2",
+    "sequelize": "^6.29.0"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.17",
+    "@types/node": "^18.14.4",
+    "@types/sequelize": "^4.28.14",
+    "mysql2": "^3.1.2",
+    "sequelize-cli": "^6.6.0",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^4.9.5"
+  }
+}
