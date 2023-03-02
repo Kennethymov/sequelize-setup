@@ -323,7 +323,7 @@
           - 3001:3001
         platform: linux/x86_64
         working_dir: /app-backend-default
-        command: npm start
+        command: npm run dev
         depends_on:
           db:
             condition: service_healthy
