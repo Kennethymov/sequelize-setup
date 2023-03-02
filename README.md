@@ -315,46 +315,42 @@
   4. Garanta as seguintes configurações
 
   ~~~yml
-  version: '3.9'
-  services:
-    backend:
-      container_name: app_backend
-      build: ./
-      ports:
-        - 3001:3001
-      platform: linux/x86_64
-      working_dir: /app-backend
-      depends_on:
-        db:
-          condition: service_healthy
-      environment:
-        - APP_PORT=3001
-        - JWT_SECRET=jwt_secret
-        - DB_USER=root
-        - DB_PASS=root
-        - DB_HOST=db
-        - DB_PORT=3306
-      healthcheck:
-        test: ["CMD", "lsof", "-t", "-i:3001"]
-        timeout: 10s
-        retries: 5
-      volumes:
-        - ./:/app-backend
-    db:
-      image: mysql:8.0.21
-      container_name: db
-      platform: linux/x86_64
-      ports:
-        - 3002:3306
-      environment:
-        - MYSQL_ROOT_PASSWORD=root
-      restart: 'always'
-      healthcheck:
-        test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
-        timeout: 10s
-        retries: 5
-      cap_add:
-        - SYS_NICE
+    version: '3.9'
+    services:
+      backend:
+        container_name: app_default
+        build: ./
+        ports:
+          - 3001:3001
+        platform: linux/x86_64
+        working_dir: /app-default
+        command: npm start
+        depends_on:
+          db:
+            condition: service_healthy
+        env_file:
+          - .env
+        healthcheck:
+          test: ["CMD", "lsof", "-t", "-i:3001"]
+          timeout: 10s
+          retries: 5
+        volumes:
+          - ./:/app-default
+      db:
+        image: mysql:8.0.21
+        container_name: db
+        platform: linux/x86_64
+        ports:
+          - 3002:3306
+        environment:
+          - MYSQL_ROOT_PASSWORD=root
+        restart: 'always'
+        healthcheck:
+          test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+          timeout: 10s
+          retries: 5
+        cap_add:
+          - SYS_NICE
   ~~~
 
   </details>
